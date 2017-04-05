@@ -1,72 +1,50 @@
 /**
  * Created by apyreev on 05-Apr-17.
  */
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes as pt } from 'react';
+import Grid  from 'react-bootstrap/lib/Grid';
+import Nav from 'react-bootstrap/lib/Nav';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import NavItem  from 'react-bootstrap/lib/NavItem';
+import { Link } from 'react-router';
+import LinkContainer from 'react-router-bootstrap/lib/LinkContainer';
 
-import './App.css';
+import './bootstrap.css';
 
 const propTypes = {
-  initialName: PropTypes.string
-};
-
-const defaultProps = {
-  initialName: 'Аноним'
+  children: pt.node
 };
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.renderGreetingWidget = this.renderGreetingWidget.bind(this);
-
-    this.state = {
-      name:            this.props.initialName,
-      touched:         false,
-      greetingWidget:  () => null
-    };
-  }
-
-  handleNameChange(val) {
-    const name = val.target.value;
-
-    this.setState({ touched: true });
-
-    if (name.length === 0) {
-      this.setState({ name: this.props.initialName });
-    } else {
-      this.setState({ name });
-    }
-  }
-
-  renderGreetingWidget() {
-    if (!this.state.touched) {
-      return null;
-    }
-
-    return (
-      <div>
-        <hr />
-        <p>Здравствуйте, {this.state.name}!</p>
-      </div>
-    );
-  }
-
   render() {
     return (
-      <div className='App'>
-        <h1>Hello World!</h1>
-        <div>
-          <p>Введите Ваше имя:</p>
-          <div><input onChange={this.handleNameChange} /></div>
-          {this.renderGreetingWidget()}
-        </div>
+      <div>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to='/'>Hello World</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav navbar>
+              <LinkContainer to='/time'>
+                <NavItem>Время</NavItem>
+              </LinkContainer>
+              <LinkContainer to='/counters'>
+                <NavItem>Счетчики</NavItem>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <Grid>
+          { this.props.children }
+        </Grid>
       </div>
     );
   }
 }
 
 App.propTypes = propTypes;
-App.defaultProps = defaultProps;
 
 export default App;
