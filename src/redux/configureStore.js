@@ -1,14 +1,8 @@
 /**
- * Created by apyreev on 05-Apr-17.
+ * Created by apyreev on 06-Apr-17.
  */
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import counterReducer from './reducers/counterReducer';
-
-export default function (initialState = {}) {
-  const rootReducer = combineReducers({
-    counter: counterReducer
-  });
-
-  return createStore(rootReducer, initialState, applyMiddleware(thunk));
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./configureStore.prod');
+} else {
+  module.exports = require('./configureStore.dev');
 }
