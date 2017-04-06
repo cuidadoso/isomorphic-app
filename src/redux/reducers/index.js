@@ -3,7 +3,9 @@
  */
 import { combineReducers } from 'redux';
 import counterReducer from './counterReducer';
+import timeRedicer from './timeReducer';
 
 export default combineReducers({
-  counter: counterReducer
+  counter: counterReducer,
+  time: timeRedicer
 });
