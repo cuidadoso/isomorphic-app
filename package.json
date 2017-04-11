@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Isomorfic application",
   "main": "index.js",
-  "repository": "https://github.com/cuidadoso/IsomorphicApp.git",
+  "repository": "https://github.com/cuidadoso/isomorphic-app.git",
   "author": "cuidadoso",
   "license": "MIT",
   "dependencies": {
